@@ -3,35 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utils="clr-namespace:Module4TP1.Utils"
              mc:Ignorable="d"
              x:Class="Module4TP1.MainPage">
 
     <StackLayout>
         <ContentView BackgroundColor="#58B0F0">
             <StackLayout Orientation="Horizontal" Margin="25">
-                <Label Text="Nouveau" VerticalTextAlignment="Center"/>
-                <Label Text="Accueil" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="Rechercher" VerticalTextAlignment="Center"/>
+                <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.pencil.png}" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                <Label Text="Accueil" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize ="20" FontAttributes ="Bold" TextColor="White"/>
+                <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.search.png}" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
             </StackLayout>
         </ContentView>
 
+        <StackLayout Orientation="Vertical">
+            <Label Text="Connexion à Twitter" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
+            <Entry Placeholder="Identifiant Twitter" HorizontalOptions="FillAndExpand" MaxLength="50" Keyboard="Email" ReturnType="Next"/>
+            <Entry Placeholder="Mot de passe" HorizontalOptions="FillAndExpand" MaxLength="50" Keyboard="Default" IsPassword="True" ReturnType="Next"/>
+            <StackLayout Orientation="Horizontal">
+                <Switch HorizontalOptions="Start" OnColor="Blue" ThumbColor="Blue"></Switch>
+                <Label Text="Mémoriser mes informations" Margin="-50, 7" HorizontalOptions="Start"></Label>
+            </StackLayout>
+            <Button Text="Se connecter" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20">
-                    <BoxView Margin="20, 0" HeightRequest="75" BackgroundColor="Black"></BoxView>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10">
+                    <Image Margin="5" WidthRequest="75" Aspect="AspectFit" Source="https://picsum.photos/50/50/?random"></Image>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Antoine" TextColor="Black"></Label>
-                            <Label Text="atrucnuche@gmail.com" TextColor="Black"></Label>
-                            <Label Text="3min" TextColor="Black" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Antoine" TextColor="Black"/>
+                            <Label Text="atrucnuche@gmail.com" TextColor="LightGray"/>
+                            <Label Text="3min" TextColor="LightGray" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
-                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec facilisis risus. Quisque vel quam condimentum, imperdiet lectus volutpat, rutrum velit. " TextColor="Black"></Label>
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec facilisis risus. Quisque vel quam condimentum, imperdiet lectus volutpat, rutrum velit. " TextColor="Black"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                    <Label HorizontalOptions="FillAndExpand" Text="Répondre" HorizontalTextAlignment="Center" TextColor="Black"/>
-                    <Label HorizontalOptions="FillAndExpand" Text="Retweet" HorizontalTextAlignment="Center" TextColor="Black"/>
-                    <Label HorizontalOptions="FillAndExpand" Text="Favoris" HorizontalTextAlignment="Center" TextColor="Black"/>
+                    <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.reply.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
+                    <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.retweet.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
+                    <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.favorite.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
