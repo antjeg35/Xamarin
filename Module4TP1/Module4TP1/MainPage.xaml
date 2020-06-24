@@ -7,10 +7,43 @@
              x:Class="Module4TP1.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <ContentView BackgroundColor="#58B0F0">
+            <StackLayout Orientation="Horizontal" Margin="25">
+                <Label Text="Nouveau" VerticalTextAlignment="Center"/>
+                <Label Text="Accueil" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Rechercher" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </ContentView>
+
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20">
+                    <BoxView Margin="20, 0" HeightRequest="75" BackgroundColor="Black"></BoxView>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Antoine" TextColor="Black"></Label>
+                            <Label Text="atrucnuche@gmail.com" TextColor="Black"></Label>
+                            <Label Text="3min" TextColor="Black" HorizontalOptions="EndAndExpand"></Label>
+                        </StackLayout>
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec facilisis risus. Quisque vel quam condimentum, imperdiet lectus volutpat, rutrum velit. " TextColor="Black"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                    <Label HorizontalOptions="FillAndExpand" Text="Répondre" HorizontalTextAlignment="Center" TextColor="Black"/>
+                    <Label HorizontalOptions="FillAndExpand" Text="Retweet" HorizontalTextAlignment="Center" TextColor="Black"/>
+                    <Label HorizontalOptions="FillAndExpand" Text="Favoris" HorizontalTextAlignment="Center" TextColor="Black"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <ContentView>
+            <StackLayout Orientation="Horizontal" Margin="0, 75">
+                <Label Text="Fil" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                <Label Text="Notifications" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                <Label Text="Messages" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                <Label Text="Moi" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+            </StackLayout>
+        </ContentView>
     </StackLayout>
 
 </ContentPage>
