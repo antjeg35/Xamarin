@@ -1,78 +1,99 @@
-﻿using System;
+﻿using Module4TP1.Entities;
+using Module4TP1.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Module4TP1.Models
 {
     public class LoginForm
     {
-        public Entry Login { get; }
-        public Entry Password { get; }
-        public Xamarin.Forms.Switch IsRemind { get; }
-        public VisibilitySwitch VisibilitySwitch { get; }
-        public ErrorForm Error { get; }
+            private readonly ITwitterService twitterService;
+            private readonly Entry login;
+            private readonly Entry password;
+            private readonly Xamarin.Forms.Switch isRemind;
+            private readonly VisibilitySwitch visibilitySwitch;
+            private readonly ErrorForm error;
 
-        public LoginForm(Entry login, Entry password, Xamarin.Forms.Switch isRemind, View loginForm, View tweetForm, Label errorLabel, Button button)
-        {
-            this.Login = login;
-            this.Password = password;
-            this.IsRemind = isRemind;
-            this.VisibilitySwitch = new VisibilitySwitch(loginForm, tweetForm);
-            this.Error = new ErrorForm(errorLabel);
-            button.Clicked += Button_Clicked;
-        }
+            private User user;
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Debug.WriteLine("btn clicked");
-            if (this.IsValid())
+            public LoginForm(Entry login, Entry password, Xamarin.Forms.Switch isRemind, View loginForm, View tweetForm, Label errorLabel, Button button)
             {
-                this.Error.Hide();
-                this.VisibilitySwitch.Switch();
-            }
-            else
-            {
-                this.Error.Display();
-            }
-        }
+                this.twitterService = new TwitterService();
 
-        public Boolean IsValid()
-        {
-            Boolean result = true;
-
-            String login = this.Login.Text;
-            String password = this.Password.Text;
-            Boolean isRemind = this.IsRemind.IsToggled;
-
-            bool haveError = false;
-            StringBuilder stringBuilder = new StringBuilder();
-
-            if (String.IsNullOrEmpty(login) || login.Length < 3)
-            {
-                haveError = true;
-                stringBuilder.Append("L'identifiant ne peut pas être null et doit posséder au moins 3 caractères.");
+                this.login = login;
+                this.password = password;
+                this.isRemind = isRemind;
+                this.visibilitySwitch = new VisibilitySwitch(loginForm, tweetForm);
+                this.error = new ErrorForm(errorLabel);
+                button.Clicked += Button_Clicked;
             }
 
-            if (String.IsNullOrEmpty(password) || password.Length < 6)
+            private void Button_Clicked(object sender, EventArgs e)
             {
+                Debug.WriteLine("btn clicked");
+
+                
+                if (this.IsValid())
+                {
+                    if (twitterService.Authenticate(this.user))
+                    {
+                        this.error.Hide();
+                        this.visibilitySwitch.Switch();
+                    }
+                    else
+                    {
+                        this.error.Error = "Utilisateur non trouvé";
+                        this.error.Display();
+                    }
+                }
+                else
+                {
+                    this.error.Display();
+                }
+
+            }
+
+            public Boolean IsValid()
+            {
+                Boolean result = true;
+
+                User user = new User();
+                user.Login = login.Text;
+                user.Password = password.Text;
+                Boolean isRemind = this.isRemind.IsToggled;
+
+                bool haveError = false;
+                StringBuilder stringBuilder = new StringBuilder();
+
+                if (String.IsNullOrEmpty(user.Login) || user.Login.Length < 3)
+                {
+                    haveError = true;
+                    stringBuilder.Append("L'identifiant ne peut pas être null et doit posséder au moins 3 caractères.");
+                }
+
+                if (String.IsNullOrEmpty(user.Password) || user.Password.Length < 6)
+                {
+                    if (haveError)
+                    {
+                        stringBuilder.Append("\n");
+                    }
+                    haveError = true;
+                    stringBuilder.Append("Le mot de passe ne peut pas être null et doit posséder au moins 6 caractères.");
+                }
+
                 if (haveError)
                 {
-                    stringBuilder.Append("\n");
+                    this.error.Error = stringBuilder.ToString();
                 }
-                haveError = true;
-                stringBuilder.Append("Le mot de passe ne peut pas être null et doit posséder au moins 6 caractères.");
+
+                result = !haveError;
+                this.user = user;
+
+                return result;
             }
-
-            if (haveError)
-            {
-                this.Error.Error = stringBuilder.ToString();
-            }
-
-            result = !haveError;
-
-            return result;
         }
-    }
 }
