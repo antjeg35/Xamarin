@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Module4TP1.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Module4TP1
         public MainPage()
         {
             InitializeComponent();
+            new LoginForm(this.login, this.password, this.isRemind, this.loginForm, this.tweetForm, this.errorLabel, this.connection);
         }
     }
 }

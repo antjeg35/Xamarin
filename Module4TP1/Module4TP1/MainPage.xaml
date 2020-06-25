@@ -16,18 +16,20 @@
             </StackLayout>
         </ContentView>
 
-        <StackLayout Orientation="Vertical">
-            <Label Text="Connexion à Twitter" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
-            <Entry Placeholder="Identifiant Twitter" HorizontalOptions="FillAndExpand" MaxLength="50" Keyboard="Email" ReturnType="Next"/>
-            <Entry Placeholder="Mot de passe" HorizontalOptions="FillAndExpand" MaxLength="50" Keyboard="Default" IsPassword="True" ReturnType="Next"/>
+        <StackLayout x:Name="loginForm" Orientation="Vertical" >
+            <Label Text="Connexion à twitter" TextColor="Gray" HorizontalOptions="CenterAndExpand"></Label>
+            <Entry x:Name="login" Placeholder="Identifiant twitter" HorizontalOptions="FillAndExpand"/>
+            <Entry x:Name="password" Placeholder="Mot de passe" IsPassword="True" HorizontalOptions="FillAndExpand"/>
             <StackLayout Orientation="Horizontal">
-                <Switch HorizontalOptions="Start" OnColor="Blue" ThumbColor="Blue"></Switch>
-                <Label Text="Mémoriser mes informations" Margin="-50, 7" HorizontalOptions="Start"></Label>
+                <Switch x:Name="isRemind"/>
+                <Label Text="Mémoriser mes informations" TextColor="Gray" VerticalOptions="CenterAndExpand"/>
             </StackLayout>
-            <Button Text="Se connecter" HorizontalOptions="FillAndExpand"></Button>
+            <Label x:Name="errorLabel"/>
+            <Button x:Name="connection" Text="SE CONNECTER" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
 
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout x:Name="tweetForm" IsVisible="false">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10">
                     <Image Margin="5" WidthRequest="75" Aspect="AspectFit" Source="https://picsum.photos/50/50/?random"></Image>
@@ -46,16 +48,17 @@
                     <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.favorite.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
                 </StackLayout>
             </StackLayout>
-        </ScrollView>
+            </ScrollView>
 
-        <ContentView>
-            <StackLayout Orientation="Horizontal" Margin="0, 75">
-                <Label Text="Fil" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                <Label Text="Notifications" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                <Label Text="Messages" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                <Label Text="Moi" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-            </StackLayout>
-        </ContentView>
+            <ContentView>
+                <StackLayout Orientation="Horizontal" Margin="0, 75">
+                    <Label Text="Fil" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                    <Label Text="Notifications" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                    <Label Text="Messages" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                    <Label Text="Moi" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
+                </StackLayout>
+            </ContentView>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>
