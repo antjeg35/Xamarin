@@ -36,22 +36,33 @@ namespace Module4TP1.Models
             {
                 Debug.WriteLine("btn clicked");
 
-                
-                if (this.IsValid())
+                var current = Connectivity.NetworkAccess;
+                Debug.WriteLine("Internet : " + current);
+
+                this.error.Hide();
+                if (current != NetworkAccess.Internet)
                 {
-                    if (twitterService.Authenticate(this.user))
+                    if (this.IsValid())
                     {
-                        this.error.Hide();
-                        this.visibilitySwitch.Switch();
+                        if (twitterService.Authenticate(this.user))
+                        {
+                            this.error.Hide();
+                            this.visibilitySwitch.Switch();
+                        }
+                        else
+                        {
+                            this.error.Error = "Utilisateur non trouvé";
+                            this.error.Display();
+                        }
                     }
                     else
                     {
-                        this.error.Error = "Utilisateur non trouvé";
                         this.error.Display();
                     }
                 }
                 else
                 {
+                    this.error.Error = "Vous devez être connecté à internet pour vous identifier";
                     this.error.Display();
                 }
 
