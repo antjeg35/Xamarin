@@ -12,7 +12,7 @@ namespace Module4TP1.Services
         {
             get
             {
-                User user = new User() { Login = "test", Password = "password" };
+                User user = new User() { Login = "Antoine", Password = "password" };
                 return new List<Tweet>()
                 {
                     new Tweet(){User = user, Data ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ", CreatedAt = DateTime.Now},

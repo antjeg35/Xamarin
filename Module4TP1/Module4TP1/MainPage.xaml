@@ -3,62 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:utils="clr-namespace:Module4TP1.Utils"
              mc:Ignorable="d"
+             xmlns:views="clr-namespace:Module4TP1.Views"
              x:Class="Module4TP1.MainPage">
 
     <StackLayout>
-        <ContentView BackgroundColor="#58B0F0">
-            <StackLayout Orientation="Horizontal" Margin="25">
-                <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.pencil.png}" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
-                <Label Text="Accueil" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize ="20" FontAttributes ="Bold" TextColor="White"/>
-                <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.search.png}" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
-            </StackLayout>
-        </ContentView>
-
-        <StackLayout x:Name="loginForm" Orientation="Vertical" >
-            <Label Text="Connexion à twitter" TextColor="Gray" HorizontalOptions="CenterAndExpand"></Label>
-            <Entry x:Name="login" Placeholder="Identifiant twitter" HorizontalOptions="FillAndExpand"/>
-            <Entry x:Name="password" Placeholder="Mot de passe" IsPassword="True" HorizontalOptions="FillAndExpand"/>
-            <StackLayout Orientation="Horizontal">
-                <Switch x:Name="isRemind"/>
-                <Label Text="Mémoriser mes informations" TextColor="Gray" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-            <Label x:Name="errorLabel"/>
-            <Button x:Name="connection" Text="SE CONNECTER" HorizontalOptions="FillAndExpand"/>
-        </StackLayout>
-
-        <StackLayout x:Name="tweetForm" IsVisible="false">
-            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-            <StackLayout Orientation="Vertical" VerticalOptions="Start">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10">
-                    <Image Margin="5" WidthRequest="75" Aspect="AspectFit" Source="https://picsum.photos/50/50/?random"></Image>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Antoine" TextColor="Black"/>
-                            <Label Text="atrucnuche@gmail.com" TextColor="LightGray"/>
-                            <Label Text="3min" TextColor="LightGray" HorizontalOptions="EndAndExpand"/>
-                        </StackLayout>
-                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec facilisis risus. Quisque vel quam condimentum, imperdiet lectus volutpat, rutrum velit. " TextColor="Black"/>
+        <views:header/>
+            <StackLayout>
+                <StackLayout Orientation="Vertical" >
+                    <Label Text="Connexion à twitter" TextColor="Gray" HorizontalOptions="CenterAndExpand"></Label>
+                    <Entry x:Name="login" Placeholder="Identifiant twitter" HorizontalOptions="FillAndExpand"/>
+                    <Entry x:Name="password" Placeholder="Mot de passe" IsPassword="True" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Switch x:Name="isRemind"/>
+                        <Label Text="Mémoriser mes informations" TextColor="Gray" VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
+                    <Label x:Name="errorLabel"/>
+                    <Button x:Name="connection" Text="SE CONNECTER" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                    <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.reply.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
-                    <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.retweet.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
-                    <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.favorite.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
-                </StackLayout>
-            </StackLayout>
-            </ScrollView>
-
-            <ContentView>
-                <StackLayout Orientation="Horizontal" Margin="0, 75">
-                    <Label Text="Fil" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                    <Label Text="Notifications" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                    <Label Text="Messages" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                    <Label Text="Moi" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="#858585"/>
-                </StackLayout>
-            </ContentView>
-        </StackLayout>
+            </StackLayout>  
+        <views:footer/>
     </StackLayout>
 
 </ContentPage>

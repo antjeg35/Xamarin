@@ -1,9 +1,11 @@
 ﻿using Module4TP1.Entities;
 using Module4TP1.Services;
+using Module4TP1.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -15,24 +17,26 @@ namespace Module4TP1.Models
             private readonly Entry login;
             private readonly Entry password;
             private readonly Xamarin.Forms.Switch isRemind;
-            private readonly VisibilitySwitch visibilitySwitch;
             private readonly ErrorForm error;
-
             private User user;
+            private INavigation navigation;
+            
 
-            public LoginForm(Entry login, Entry password, Xamarin.Forms.Switch isRemind, View loginForm, View tweetForm, Label errorLabel, Button button)
+
+        public LoginForm(Entry login, Entry password, Xamarin.Forms.Switch isRemind, Label errorLabel, Button button, INavigation navigation)
             {
                 this.twitterService = new TwitterService();
-
+                this.navigation = navigation;
                 this.login = login;
                 this.password = password;
                 this.isRemind = isRemind;
-                this.visibilitySwitch = new VisibilitySwitch(loginForm, tweetForm);
                 this.error = new ErrorForm(errorLabel);
                 button.Clicked += Button_Clicked;
-            }
+                
+    }
 
-            private void Button_Clicked(object sender, EventArgs e)
+        
+        private void Button_Clicked(object sender, EventArgs e)
             {
                 Debug.WriteLine("btn clicked");
 
@@ -40,14 +44,13 @@ namespace Module4TP1.Models
                 Debug.WriteLine("Internet : " + current);
 
                 this.error.Hide();
-                if (current != NetworkAccess.Internet)
-                {
+                
                     if (this.IsValid())
                     {
                         if (twitterService.Authenticate(this.user))
                         {
                             this.error.Hide();
-                            this.visibilitySwitch.Switch();
+                            this.navigation.PushAsync(new TweetsPage());
                         }
                         else
                         {
@@ -59,16 +62,9 @@ namespace Module4TP1.Models
                     {
                         this.error.Display();
                     }
-                }
-                else
-                {
-                    this.error.Error = "Vous devez être connecté à internet pour vous identifier";
-                    this.error.Display();
-                }
-
             }
 
-            public Boolean IsValid()
+        public Boolean IsValid()
             {
                 Boolean result = true;
 

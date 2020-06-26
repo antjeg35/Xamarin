@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:views="clr-namespace:Module4TP1.Views"
+             xmlns:utils="clr-namespace:Module4TP1.Utils"
+             x:Class="Module4TP1.Views.TweetsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <views:header/>
+            <ListView x:Name="ListeTweets">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10">
+                                <Image Margin="5" WidthRequest="75" Aspect="AspectFit" Source="https://picsum.photos/50/50/?random"></Image>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding User.Login}" TextColor="Black"/>
+                                        <Label Text="{Binding password.Password}" TextColor="LightGray"/>
+                                        <Label Text="{Binding CreatedAt}" TextColor="LightGray" HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Data}" TextColor="Black"/>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                        <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.reply.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
+                                        <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.retweet.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
+                                        <ImageButton Source="{utils:ImageFromResource Module4TP1.Images.favorite.png}" WidthRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></ImageButton>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <views:footer/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
